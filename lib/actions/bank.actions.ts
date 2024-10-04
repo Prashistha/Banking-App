@@ -74,7 +74,7 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
       access_token: bank.accessToken,
     });
     const accountData = accountsResponse.data.accounts[0];
-
+    console.log(bank)
     // get transfer transactions from appwrite
     const transferTransactionsData = await getTransactionsByBankId({
       bankId: bank.$id,
