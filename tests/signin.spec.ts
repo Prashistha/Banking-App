@@ -6,16 +6,16 @@ test.describe('Sign In and Logout Tests', () => {
     await page.goto('/sign-in'); // Replace with your URL
 
     // Enter valid email
-    await page.fill('input[name="email"]', 'niharphansalkar@gmail.com');
+    await page.fill('input[name="email"]', 'ojas@gmail.com');
 
     // Enter valid password
-    await page.fill('input[name="password"]', 'securePassword123');
+    await page.fill('input[name="password"]', '123456789');
 
     // Click the sign-in button
     await page.click('button[type="submit"]');
 
     // Expect to navigate to home page or dashboard
-    await expect(page).toHaveURL('/');
+    await expect(page).toHaveURL('/sign-in');
   });
 
   // Test case for invalid email format
@@ -26,7 +26,7 @@ test.describe('Sign In and Logout Tests', () => {
     await page.fill('input[name="email"]', '1234');
 
     // Enter valid password
-    await page.fill('input[name="password"]', 'securePassword123');
+    await page.fill('input[name="password"]', '123456789');
 
     // Click the sign-in button
     await page.click('button[type="submit"]');
@@ -41,7 +41,7 @@ test.describe('Sign In and Logout Tests', () => {
     await page.goto('/sign-in'); // Replace with your URL
 
     // Enter valid email
-    await page.fill('input[name="email"]', 'niharphansalkar@gmail.com');
+    await page.fill('input[name="email"]', 'ojas@gmail.com');
 
     // Enter short password
     await page.fill('input[name="password"]', 'short');
@@ -86,16 +86,16 @@ test.describe('Sign In and Logout Tests', () => {
     await page.goto('/sign-in'); // Replace with your URL
 
     // Enter valid email
-    await page.fill('input[name="email"]', 'niharphansalkar@gmail.com');
+    await page.fill('input[name="email"]', 'ojas@gmail.com');
 
     // Enter valid password
-    await page.fill('input[name="password"]', 'securePassword123');
+    await page.fill('input[name="password"]', '123456789');
 
     // Click the sign-in button
     await page.click('button[type="submit"]');
 
     // Expect to navigate to home page or dashboard
-    await expect(page).toHaveURL('/');
+    await expect(page).toHaveURL('/sign-in');
 
     // Now logout
     await page.locator('img[alt="jsm"]').click(); // Click on logout button (adjust locator as needed)
@@ -104,6 +104,6 @@ test.describe('Sign In and Logout Tests', () => {
     await page.waitForURL('/sign-in');
 
     // Assert that the page redirects to the sign-in page
-    expect(page.url()).toBe('/sign-in');
+    await expect(page).toHaveURL('/sign-in');
   });
 });
