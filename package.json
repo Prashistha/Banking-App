@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "testCase": "npx playwright test — project=chromium"
+    "testCase": "npx playwright test --project=chromium"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
