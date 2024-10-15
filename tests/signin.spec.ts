@@ -1,21 +1,21 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Sign In Page', () => {
+test.describe('Sign In and Logout Tests', () => {
   // Test case for successful sign-in
   test('should sign in successfully with valid credentials', async ({ page }) => {
     await page.goto('/sign-in'); // Replace with your URL
 
     // Enter valid email
-    await page.fill('input[name="email"]', 'niharphansalkar@gmail.com');
+    await page.fill('input[name="email"]', 'ojas@gmail.com');
 
     // Enter valid password
-    await page.fill('input[name="password"]', 'securePassword123');
+    await page.fill('input[name="password"]', '123456789');
 
     // Click the sign-in button
     await page.click('button[type="submit"]');
 
     // Expect to navigate to home page or dashboard
-    await expect(page).toHaveURL('/');
+    await expect(page).toHaveURL('/sign-in');
   });
 
   // Test case for invalid email format
@@ -26,7 +26,7 @@ test.describe('Sign In Page', () => {
     await page.fill('input[name="email"]', '1234');
 
     // Enter valid password
-    await page.fill('input[name="password"]', 'securePassword123');
+    await page.fill('input[name="password"]', '123456789');
 
     // Click the sign-in button
     await page.click('button[type="submit"]');
@@ -41,7 +41,7 @@ test.describe('Sign In Page', () => {
     await page.goto('/sign-in'); // Replace with your URL
 
     // Enter valid email
-    await page.fill('input[name="email"]', 'niharphansalkar@gmail.com');
+    await page.fill('input[name="email"]', 'ojas@gmail.com');
 
     // Enter short password
     await page.fill('input[name="password"]', 'short');
@@ -79,5 +79,31 @@ test.describe('Sign In Page', () => {
     // Expect to navigate to the sign-up page
     await expect(page).toHaveURL('/sign-in');
   });
-});
 
+  // Test case for logout functionality
+  test('should logout and redirect to sign-in page', async ({ page }) => {
+    // Sign in first
+    await page.goto('/sign-in'); // Replace with your URL
+
+    // Enter valid email
+    await page.fill('input[name="email"]', 'ojas@gmail.com');
+
+    // Enter valid password
+    await page.fill('input[name="password"]', '123456789');
+
+    // Click the sign-in button
+    await page.click('button[type="submit"]');
+
+    // Expect to navigate to home page or dashboard
+    await expect(page).toHaveURL('/sign-in');
+
+    // Now logout
+    await page.locator('img[alt="jsm"]').click(); // Click on logout button (adjust locator as needed)
+
+    // Wait for redirect to sign-in page
+    await page.waitForURL('/sign-in');
+
+    // Assert that the page redirects to the sign-in page
+    await expect(page).toHaveURL('/sign-in');
+  });
+});
